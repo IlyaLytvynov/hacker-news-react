@@ -1,0 +1,11 @@
+@import './color';
+
+$base-theme: (
+  header: (
+    bg-color: map-get($colors-yellow, base-orange)
+  )
+);
+
+@function get-color($component, $color) {
+  @return map-get(map-get($base-theme, $component), $color);
+}
