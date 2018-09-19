@@ -1,16 +1,5 @@
 @import '../../styles/index';
 
 .auth-form {
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13);
-  padding: 1rem;
-  margin: 0 auto;
-  max-width: 400px;
-  &__raw {
-    margin: 10px 0;
-  }
-  &__input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(0,0,0,.5);
-  }
+ @include auth-form;
 }

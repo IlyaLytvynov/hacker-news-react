@@ -3,10 +3,11 @@ import * as React from 'react';
 import { Header } from './components/header/Header';
 
 import './App.scss';
-import { AuthPage } from './containers/auth-page/AuthPage';
 import { client } from './services/GqlClient';
 import { ApolloProvider } from 'react-apollo';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { LoginContainer } from './containers/login/Login';
+import { SignUp } from './containers/sign-up/SignUp';
 
 interface IAppProps {
   title: string;
@@ -14,12 +15,19 @@ interface IAppProps {
 
 export class App extends React.Component<IAppProps, {}> {
   public render(): JSX.Element {
+    // @ts-ignore
     return <Router>
       <ApolloProvider client={client}>
         <div className='app'>
-          <Header/>
-          <Route exact={true} path='/' component={AuthPage} />
-          <Route path='/other-page' component={() => <h1>Other page</h1>} />
+          <Header>
+            <Link to={'/sign-up'}>Sign Up</Link>
+            <Link to={'/login'}>Login page</Link>
+          </Header>
+          <Switch>
+            <Route path='/' exact={true} component={() => (<h1>Hello World</h1>)}/>
+            <Route path='/sign-up' component={SignUp}/>
+            <Route path='/login' component={LoginContainer} />
+          </Switch>
         </div>
       </ApolloProvider>
     </Router>;

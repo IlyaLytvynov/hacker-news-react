@@ -1,7 +1,37 @@
 $colors-yellow: (
-  base-orange: orange
+        base-orange: orange,
+);
+
+$colors-blue: (
+        rich-electric-blue: rgba(22, 130, 211, 1),
+        dodger-blue: rgba(25, 145, 235, 1),
+        dodger-blue-darken: rgb(21, 106, 171),
+        blue-de-france: rgba(56, 163, 244, 1),
+);
+
+$colors-green: (
+        harlequin: rgba(48, 214, 0, 1),
+        kelly-green: rgba(40, 179, 0, 1),
+        kelly-green-light: rgba(48, 213, 0, 1),
+        honeydew: rgba(238, 255, 238, 1),
+        screamin-green: rgba(127, 255, 100, 1),
+);
+
+$colors-red: (
+        tomato: rgba(255, 98, 74, 1),
+        portland-orange: rgba(255, 72, 44, 1),
+        light-salmon-pink: rgba(255, 150, 150, 1),
+        brink-pink: rgba(250, 105, 123, 1),
+        lavender-blush: rgba(255, 241, 241, 1),
 );
 
 $colors-mono: (
-  black: rgb(0,0,0)
+        black: rgb(0, 0, 0),
+        black-white: rgb(42, 146, 255),
+        onyx: rgba(16, 18, 23, 1),
+        onyx-a-05: rgba(7, 10, 20, 0.5),
+        dark-jungle-green: rgba(32, 36, 47, 1),
+        medium-jungle-green: rgba(40, 45, 59, 1),
+        white: rgb(255, 255, 255),
+        light-grey: rgb(245, 245, 245)
 );

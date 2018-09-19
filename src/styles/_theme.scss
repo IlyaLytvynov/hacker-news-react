@@ -1,9 +1,36 @@
 @import './color';
 
 $base-theme: (
-  header: (
-    bg-color: map-get($colors-yellow, base-orange)
-  )
+        global: (
+                primary: map-get($colors-blue, dodger-blue),
+                primary-hover: map-get($colors-blue, blue-de-france),
+                primary-focus: map-get($colors-blue, blue-de-france),
+                primary-font-color: map-get($colors-mono, white),
+                success: map-get($colors-green, kelly-green),
+                success-hover: map-get($colors-green, harlequin),
+                success-focus: map-get($colors-green, harlequin),
+                success-font-color: map-get($colors-mono, white),
+                danger: map-get($colors-red, portland-orange),
+                danger-hover: map-get($colors-red, tomato),
+                danger-focus: map-get($colors-red, tomato),
+                danger-font-color: map-get($colors-mono, white),
+        ),
+        header: (
+                bg-color: map-get($colors-yellow, base-orange)
+        ),
+        input: (
+                border-color: map-get($colors-mono, onyx-a-05),
+                border-color-focus: map-get($colors-blue, dodger-blue),
+                font-color-focus: map-get($colors-blue, dodger-blue),
+                placeholder-color: map-get($colors-mono, onyx-a-05),
+                placeholder-color-focus: map-get($colors-blue, dodger-blue),
+        ),
+        auth-form: (
+          bg-color: map-get($colors-mono, white)
+        ),
+        content: (
+          bg-color: map-get($colors-mono, light-grey)
+        )
 );
 
 @function get-color($component, $color) {
