@@ -5,6 +5,7 @@ export class GQLResponseFormatter {
     return new Promise((resolve, reject) => {
       response
         .then((resp) => {
+          debugger;
           resolve(get(resp, `data.${field}`));
         })
         .catch((e) => reject(e));

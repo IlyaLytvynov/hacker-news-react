@@ -27,7 +27,11 @@ export class Login extends React.Component<ChildProps<ILoginProps, ILoginRespons
   };
 
   public submit = (data: IAuthState) => {
-    GQLResponseFormatter.format<ILoginResponse, IAuthData>(this.props.mutate({variables: data}), 'login')
+    GQLResponseFormatter
+      .format<
+        ILoginResponse,
+        IAuthData
+      >(this.props.mutate({variables: data}), 'login')
       .then((resp: IAuthData) => {
         LocalStorage.set('token', resp.token);
         this.props.history.push('/');

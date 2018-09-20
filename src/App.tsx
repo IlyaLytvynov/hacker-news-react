@@ -8,6 +8,7 @@ import { ApolloProvider } from 'react-apollo';
 import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { LoginContainer } from './containers/login/Login';
 import { SignUp } from './containers/sign-up/SignUp';
+import { Links } from './containers/links/Links';
 
 interface IAppProps {
   title: string;
@@ -24,7 +25,7 @@ export class App extends React.Component<IAppProps, {}> {
             <Link to={'/login'}>Login page</Link>
           </Header>
           <Switch>
-            <Route path='/' exact={true} component={() => (<h1>Hello World</h1>)}/>
+            <Route path='/' exact={true} component={Links}/>
             <Route path='/sign-up' component={SignUp}/>
             <Route path='/login' component={LoginContainer} />
           </Switch>

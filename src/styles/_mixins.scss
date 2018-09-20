@@ -9,14 +9,18 @@
   background-color: get-color(auth-form, bg-color);
   border: 1px solid transparent;
   border-radius: $global-border-radius;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @include center;
   > * {
     margin: 10px 0;
   }
   &_invalid {
     border-color: get-color(global, danger);
   }
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
