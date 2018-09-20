@@ -15,3 +15,18 @@ export const LINKS: any = gql`
         }
     }
 `;
+
+
+export const ADD_LINK: any = gql`
+    mutation Post($url: String!, $description: String!) {
+        post(url: $url, description: $description) {
+            id
+            description
+            url
+            postedBy {
+                name
+                email
+            }
+        }
+    }
+`;

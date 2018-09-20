@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ILink } from '../../containers/links/models/Link';
+import { ILink } from '../../containers/feed/models/Link';
 
 export class FeedItem extends React.PureComponent<ILink> {
   public render(): JSX.Element {

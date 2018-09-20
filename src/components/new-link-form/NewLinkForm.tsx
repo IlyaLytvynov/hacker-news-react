@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { Input } from '../input/Input';
 import { Button } from '../button/Button';
+import { SyntheticEvent } from 'react';
 
-interface INewLinkFormState {
+export interface INewLinkFormState {
   url: string;
   description: string;
 }
 
-export class NewLinkForm extends React.Component<{}, INewLinkFormState> {
+interface INewLinkFormProps {
+  onSubmit(data: INewLinkFormState): void;
+}
+
+export class NewLinkForm extends React.Component<INewLinkFormProps, INewLinkFormState> {
   public state: INewLinkFormState = {
     url: '',
     description: ''
@@ -17,10 +22,16 @@ export class NewLinkForm extends React.Component<{}, INewLinkFormState> {
     this.setState((state: INewLinkFormState) => ({...state, [name]: value}));
   };
 
+  public submit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.onSubmit(this.state);
+  };
+
   public render(): JSX.Element {
     const {url, description} = this.state;
     const isDisabled = !url || !description;
-    return <form className={'new-link-form'}>
+    return <form className={'new-link-form'} onSubmit={this.submit}>
       <Input
         placeholder={'Url'}
         value={url}

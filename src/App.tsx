@@ -8,7 +8,7 @@ import { ApolloProvider } from 'react-apollo';
 import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { LoginContainer } from './containers/login/LoginContainer';
 import { SignUpContainer } from './containers/sign-up/SignUpContainer';
-import { FeedContainer } from './containers/links/FeedContainer';
+import { FeedContainer } from './containers/feed/FeedContainer';
 
 interface IAppProps {
   title: string;
