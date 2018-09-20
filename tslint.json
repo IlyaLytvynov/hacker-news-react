@@ -6,7 +6,8 @@
     "ordered-imports": false,
     "no-console": false,
     "no-debugger": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "variable-name": false
   },
   "linterOptions": {
     "exclude": [

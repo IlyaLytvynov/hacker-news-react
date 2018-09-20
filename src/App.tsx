@@ -9,6 +9,9 @@ import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { LoginContainer } from './containers/login/LoginContainer';
 import { SignUpContainer } from './containers/sign-up/SignUpContainer';
 import { FeedContainer } from './containers/feed/FeedContainer';
+import { Provider } from 'mobx-react';
+import { feedStore } from './stores/FeedStore';
+
 
 interface IAppProps {
   title: string;
@@ -19,6 +22,7 @@ export class App extends React.Component<IAppProps, {}> {
     // @ts-ignore
     return <Router>
       <ApolloProvider client={client}>
+        <Provider feedStore={feedStore}>
         <div className='app'>
           <Header>
             <Link to={'/sign-up'}>Sign Up</Link>
@@ -30,6 +34,7 @@ export class App extends React.Component<IAppProps, {}> {
             <Route path='/login' component={LoginContainer} />
           </Switch>
         </div>
+        </Provider>
       </ApolloProvider>
     </Router>;
   }
