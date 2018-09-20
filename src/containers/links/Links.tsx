@@ -3,14 +3,10 @@ import * as React from 'react';
 import { LINKS } from './LinksGQL';
 import { client } from '../../services/GqlClient';
 import { GQLResponseFormatter } from '../../services/GQLResponseResolver';
+import { Feed } from '../../components/feed/Feed';
 
-// tslint:disable-next-line
-interface ILinksProps {}
-// tslint:disable-next-line
-interface ILinksState extends IFeedData{}
-
-export class Links extends React.Component<ILinksProps, ILinksState> {
-  public state: ILinksState = {
+export class Links extends React.Component<{}, IFeedData> {
+  public state: IFeedData = {
     links: [],
     counts: 0
   };
@@ -30,12 +26,8 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
   }
 
   public render(): JSX.Element {
-    const links = this.state
-      .links
-      .map((link, i) => (<h3 key={i}>{link.description}</h3>));
-
     return <div className={'page'}>
-      {links}
+      <Feed {...this.state}/>
     </div>;
   }
 }
