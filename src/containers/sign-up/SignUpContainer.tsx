@@ -30,4 +30,4 @@ class SignUpComponent extends React.Component<ChildProps<IAuthProps, ISignUpResp
   }
 }
 
-export const SignUp = graphql(SIGN_UP)(SignUpComponent);
+export const SignUpContainer = graphql(SIGN_UP)(SignUpComponent);

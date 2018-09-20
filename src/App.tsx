@@ -6,9 +6,9 @@ import './App.scss';
 import { client } from './services/GqlClient';
 import { ApolloProvider } from 'react-apollo';
 import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import { LoginContainer } from './containers/login/Login';
-import { SignUp } from './containers/sign-up/SignUp';
-import { Links } from './containers/links/Links';
+import { LoginContainer } from './containers/login/LoginContainer';
+import { SignUpContainer } from './containers/sign-up/SignUpContainer';
+import { FeedContainer } from './containers/links/FeedContainer';
 
 interface IAppProps {
   title: string;
@@ -25,8 +25,8 @@ export class App extends React.Component<IAppProps, {}> {
             <Link to={'/login'}>Login page</Link>
           </Header>
           <Switch>
-            <Route path='/' exact={true} component={Links}/>
-            <Route path='/sign-up' component={SignUp}/>
+            <Route path='/' exact={true} component={FeedContainer}/>
+            <Route path='/sign-up' component={SignUpContainer}/>
             <Route path='/login' component={LoginContainer} />
           </Switch>
         </div>

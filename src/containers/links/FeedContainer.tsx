@@ -5,7 +5,7 @@ import { client } from '../../services/GqlClient';
 import { GQLResponseFormatter } from '../../services/GQLResponseResolver';
 import { Feed } from '../../components/feed/Feed';
 
-export class Links extends React.Component<{}, IFeedData> {
+export class FeedContainer extends React.Component<{}, IFeedData> {
   public state: IFeedData = {
     links: [],
     counts: 0

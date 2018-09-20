@@ -19,7 +19,7 @@ interface ILoginState {
   errors: Array<Error>
 }
 
-export class Login extends React.Component<ChildProps<ILoginProps, ILoginResponse>, ILoginState> {
+export class LoginComponent extends React.Component<ChildProps<ILoginProps, ILoginResponse>, ILoginState> {
   public state: ILoginState = {
     email: '',
     password: '',
@@ -51,4 +51,4 @@ export class Login extends React.Component<ChildProps<ILoginProps, ILoginRespons
   }
 }
 
-export const LoginContainer = graphql<ILoginProps, ILoginResponse>(LOG_IN)(Login);
+export const LoginContainer = graphql<ILoginProps, ILoginResponse>(LOG_IN)(LoginComponent);
