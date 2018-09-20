@@ -37,7 +37,6 @@ export class LoginForm extends React.Component<ILoginFormProps, ILoginFormState>
   }
 
   public submit = (e: SyntheticEvent) => {
-    debugger;
     e.preventDefault();
     e.stopPropagation();
 
