@@ -25,6 +25,7 @@
     "fork-ts-checker-webpack-plugin": "^0.2.8",
     "fs-extra": "3.0.1",
     "graphql": "^14.0.2",
+    "historyjs": "^1.8.0-b2",
     "html-webpack-plugin": "2.29.0",
     "jest": "22.4.2",
     "lodash": "^4.17.11",

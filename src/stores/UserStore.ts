@@ -3,6 +3,7 @@ import { IUser } from '../models/User';
 import { UserProvider } from '../providers/UserProvider';
 import { IAuthData } from '../models/AuthData';
 import { LocalStorage } from '../services/LocalStorage';
+import { history } from '../services/HistoryService';
 
 export class UserStore {
   @observable
@@ -24,7 +25,7 @@ export class UserStore {
   public login(data: any): void {
     UserProvider.login(data).then((resp: IAuthData) => {
       LocalStorage.set('token', resp.token);
-      // this.props.history.push('/');
+      history.push('/');
     });
   }
 

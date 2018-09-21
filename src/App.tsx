@@ -4,8 +4,9 @@ import { Header } from './components/header/Header';
 
 import './App.scss';
 import { client } from './services/GqlClient';
+import { history } from './services/HistoryService';
 import { ApolloProvider } from 'react-apollo';
-import { HashRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { Router, Link, Route, Switch } from 'react-router-dom';
 import { LoginContainer } from './containers/login/LoginContainer';
 import { SignUpContainer } from './containers/sign-up/SignUpContainer';
 import { FeedContainer } from './containers/feed/FeedContainer';
@@ -16,7 +17,7 @@ import { UserStore } from './stores/UserStore';
 
 const stores = {
   feedStore: new FeedStore(),
-  userStore: new UserStore()
+  userStore: new UserStore(),
 };
 
 interface IAppProps {
@@ -26,7 +27,7 @@ interface IAppProps {
 export class App extends React.Component<IAppProps, {}> {
   public render(): JSX.Element {
     // @ts-ignore
-    return <Router>
+    return <Router history={history}>
       <ApolloProvider client={client}>
         <Provider {...stores}>
         <div className='app'>
