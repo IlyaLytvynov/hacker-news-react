@@ -13,12 +13,13 @@ import { FeedContainer } from './containers/feed/FeedContainer';
 import { Provider } from 'mobx-react';
 import { FeedStore } from './stores/FeedStore';
 import { UserStore } from './stores/UserStore';
-
+import jquery from 'jquery';
 
 const stores = {
   feedStore: new FeedStore(),
   userStore: new UserStore(),
 };
+jquery.ajax();
 
 export class App extends React.Component<{}, {}> {
   public render(): JSX.Element {
