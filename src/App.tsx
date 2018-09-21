@@ -20,11 +20,7 @@ const stores = {
   userStore: new UserStore(),
 };
 
-interface IAppProps {
-  title: string;
-}
-
-export class App extends React.Component<IAppProps, {}> {
+export class App extends React.Component<{}, {}> {
   public render(): JSX.Element {
     // @ts-ignore
     return <Router history={history}>
@@ -34,6 +30,7 @@ export class App extends React.Component<IAppProps, {}> {
           <Header>
             <Link to={'/sign-up'}>Sign Up</Link>
             <Link to={'/login'}>Login page</Link>
+            <Link to={'/'}>Home page</Link>
           </Header>
           <Switch>
             <Route path='/' exact={true} component={FeedContainer}/>

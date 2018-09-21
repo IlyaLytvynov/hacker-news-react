@@ -7,7 +7,7 @@ import { ISignUpInput } from '../models/SignUpInput';
 import { ILoginInput } from '../models/LoginInput';
 
 export class UserProvider {
-  public static login(data: ILoginInput): Promise<IAuthData> {
+  public login(data: ILoginInput): Promise<IAuthData> {
     const options = {
       mutation: LOG_IN,
       variables: data
@@ -17,7 +17,7 @@ export class UserProvider {
       .format(client.mutate(options), 'login');
   }
 
-  public static signUp(data: ISignUpInput): Promise<IAuthData> {
+  public signUp(data: ISignUpInput): Promise<IAuthData> {
     const options = {
       mutation: SIGN_UP,
       variables: data,

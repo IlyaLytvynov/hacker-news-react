@@ -4,8 +4,6 @@ import { inject } from 'mobx-react';
 
 import { LoginForm } from '../../components/login-form/LoginForm';
 import { UserStore } from '../../stores/UserStore';
-import { UserProvider } from '../../providers/UserProvider';
-import { IAuthData } from '../../models/AuthData';
 import { ILoginInput } from '../../models/LoginInput';
 
 interface ILoginProps extends RouteComponentProps {
@@ -27,9 +25,9 @@ export class LoginContainer extends React.Component<ILoginProps, ILoginState> {
   };
 
   public submit = (data: ILoginInput) => {
-    UserProvider
+    this.props.userStore
       .login(data)
-      .then((resp: IAuthData) => {
+      .then(() => {
         this.props.history.push('/');
       })
       .catch((e) => this.setState(state => ({...state, errors: [e]})));

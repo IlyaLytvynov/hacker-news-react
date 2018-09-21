@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.1.0",
     "@types/lodash": "^4.14.116",
     "apollo-boost": "^0.1.16",
     "apollo-cache-inmemory": "^1.2.10",
@@ -73,6 +74,8 @@
     "@types/react-dom": "^16.0.7",
     "@types/react-router": "^4.0.31",
     "@types/react-router-dom": "^4.3.1",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "typescript": "^3.0.3"
@@ -117,7 +120,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "/Users/ilya/Projects/github-client/tsconfig.test.json"
+        "tsConfigFile": "./tsconfig.test.json"
       }
     }
   },

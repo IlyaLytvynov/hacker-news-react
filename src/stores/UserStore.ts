@@ -12,6 +12,11 @@ export class UserStore {
   @observable
   private _userInfo: IUser;
 
+  constructor(
+    private provider: UserProvider = new UserProvider(),
+  ) {
+  }
+
   @computed
   get token(): string {
     return this._token;
@@ -23,12 +28,12 @@ export class UserStore {
   }
 
   public login(data: any): Promise<void> {
-    return UserProvider.login(data)
-        .then((resp) => this.resolveData(resp));
+    return this.provider.login(data)
+      .then((resp) => this.resolveData(resp));
   }
 
   public signUp(data: any): Promise<void> {
-    return UserProvider.signUp(data)
+    return this.provider.signUp(data)
       .then((resp) => this.resolveData(resp));
   }
 
