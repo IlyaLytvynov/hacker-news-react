@@ -10,8 +10,14 @@ import { LoginContainer } from './containers/login/LoginContainer';
 import { SignUpContainer } from './containers/sign-up/SignUpContainer';
 import { FeedContainer } from './containers/feed/FeedContainer';
 import { Provider } from 'mobx-react';
-import { feedStore } from './stores/FeedStore';
+import { FeedStore } from './stores/FeedStore';
+import { UserStore } from './stores/UserStore';
 
+
+const stores = {
+  feedStore: new FeedStore(),
+  userStore: new UserStore()
+};
 
 interface IAppProps {
   title: string;
@@ -22,7 +28,7 @@ export class App extends React.Component<IAppProps, {}> {
     // @ts-ignore
     return <Router>
       <ApolloProvider client={client}>
-        <Provider feedStore={feedStore}>
+        <Provider {...stores}>
         <div className='app'>
           <Header>
             <Link to={'/sign-up'}>Sign Up</Link>

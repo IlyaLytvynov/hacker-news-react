@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { IAuthState } from '../../components/auth-form/AuthForm';
-import { LocalStorage } from '../../services/LocalStorage';
 import { ChildProps, graphql, MutationOptions } from 'react-apollo';
-import { LOG_IN } from './LoginGQL';
+import { LOG_IN } from '../../gql-requests/LoginGQL';
 import { LoginForm } from '../../components/login-form/LoginForm';
-import { GQLResponseFormatter } from '../../services/GQLResponseResolver';
 import { ILoginResponse } from './models/ILoginresponse';
 import { RouteComponentProps } from 'react-router';
-import { IAuthData } from '../../models/AuthData';
+import { inject } from 'mobx-react';
+import { UserStore } from '../../stores/UserStore';
 
 interface ILoginProps extends RouteComponentProps {
   mutate: (options?: MutationOptions) => Promise<ILoginResponse>;
+  userStore: UserStore;
 }
 
 interface ILoginState {
@@ -19,6 +19,7 @@ interface ILoginState {
   errors: Array<Error>
 }
 
+@inject('userStore')
 export class LoginComponent extends React.Component<ChildProps<ILoginProps, ILoginResponse>, ILoginState> {
   public state: ILoginState = {
     email: '',
@@ -27,17 +28,8 @@ export class LoginComponent extends React.Component<ChildProps<ILoginProps, ILog
   };
 
   public submit = (data: IAuthState) => {
-    GQLResponseFormatter
-      .format<
-        ILoginResponse,
-        IAuthData
-      >(this.props.mutate({variables: data}), 'login')
-      .then((resp: IAuthData) => {
-        LocalStorage.set('token', resp.token);
-        this.props.history.push('/');
-      })
-      .catch((e) => this.setState(state => ({...state, errors: [e]})));
-  };
+    this.props.userStore.login(data);
+  }
 
   public cleanErrors = () => {
     this.setState(state => ({...state, isError: false}));

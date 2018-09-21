@@ -27,5 +27,3 @@ export class FeedStore implements IFeedData{
       });
     }
 }
-
-export const feedStore = new FeedStore();

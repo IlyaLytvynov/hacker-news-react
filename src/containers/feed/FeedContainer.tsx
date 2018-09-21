@@ -5,11 +5,16 @@ import { client } from '../../services/GqlClient';
 import { GQLResponseFormatter } from '../../services/GQLResponseResolver';
 import { Feed } from '../../components/feed/Feed';
 import { INewLinkFormState, NewLinkForm } from '../../components/new-link-form/NewLinkForm';
-import { feedStore } from '../../stores/FeedStore';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
+import { FeedStore } from '../../stores/FeedStore';
 
+interface IFeedContainerProps {
+  feedStore: FeedStore;
+}
+
+@inject('feedStore')
 @observer
-export class FeedContainer extends React.Component<{}, IFeedData> {
+export class FeedContainer extends React.Component<IFeedContainerProps, IFeedData> {
   public addLink = (data: INewLinkFormState) => {
     const mutationOptions = {
       mutation: ADD_LINK,
@@ -23,12 +28,11 @@ export class FeedContainer extends React.Component<{}, IFeedData> {
   };
 
   public componentDidMount(): void {
-    feedStore.setLinks();
+    this.props.feedStore.setLinks();
   }
 
   public render(): JSX.Element {
-    const { links, counts } = feedStore;
-    debugger;
+    const { links, counts } = this.props.feedStore;
     return <div className={'page'}>
       <NewLinkForm onSubmit={this.addLink}/>
       <Feed links={links} counts={counts} />
