@@ -1,4 +1,4 @@
-import { IUser } from '../../../models/User';
+import { IUser } from './User';
 import { IVote } from './Vote';
 
 export interface ILink {

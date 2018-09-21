@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { SyntheticEvent } from 'react';
+
 import { Input } from '../input/Input';
 import { Button } from '../button/Button';
-import { SyntheticEvent } from 'react';
 
 export interface INewLinkFormState {
   url: string;

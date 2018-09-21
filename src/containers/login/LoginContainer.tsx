@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { IAuthState } from '../../components/auth-form/AuthForm';
-import { ChildProps, graphql, MutationOptions } from 'react-apollo';
-import { LOG_IN } from '../../gql-requests/LoginGQL';
-import { LoginForm } from '../../components/login-form/LoginForm';
-import { ILoginResponse } from './models/ILoginresponse';
 import { RouteComponentProps } from 'react-router';
 import { inject } from 'mobx-react';
+
+import { LoginForm } from '../../components/login-form/LoginForm';
 import { UserStore } from '../../stores/UserStore';
+import { UserProvider } from '../../providers/UserProvider';
+import { IAuthData } from '../../models/AuthData';
+import { ILoginInput } from '../../models/LoginInput';
 
 interface ILoginProps extends RouteComponentProps {
-  mutate: (options?: MutationOptions) => Promise<ILoginResponse>;
   userStore: UserStore;
 }
 
@@ -20,16 +19,21 @@ interface ILoginState {
 }
 
 @inject('userStore')
-export class LoginComponent extends React.Component<ChildProps<ILoginProps, ILoginResponse>, ILoginState> {
+export class LoginContainer extends React.Component<ILoginProps, ILoginState> {
   public state: ILoginState = {
     email: '',
     password: '',
     errors: [],
   };
 
-  public submit = (data: IAuthState) => {
-    this.props.userStore.login(data);
-  }
+  public submit = (data: ILoginInput) => {
+    UserProvider
+      .login(data)
+      .then((resp: IAuthData) => {
+        this.props.history.push('/');
+      })
+      .catch((e) => this.setState(state => ({...state, errors: [e]})));
+  };
 
   public cleanErrors = () => {
     this.setState(state => ({...state, isError: false}));
@@ -42,5 +46,3 @@ export class LoginComponent extends React.Component<ChildProps<ILoginProps, ILog
     </div>
   }
 }
-
-export const LoginContainer = graphql<ILoginProps, ILoginResponse>(LOG_IN)(LoginComponent);

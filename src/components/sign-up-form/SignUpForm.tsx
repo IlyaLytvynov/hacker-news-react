@@ -1,22 +1,18 @@
 import * as React from 'react';
 import { SyntheticEvent } from 'react';
 
-import './AuthForm.scss';
+import './SignUpForm.scss';
 import { Button, ButtonTypes } from '../button/Button';
 import { Input } from '../input/Input';
+import { ISignUpInput } from '../../models/SignUpInput';
 
-export interface IAuthState {
-  email: string;
-  password: string;
-  name: string;
-}
 
 export interface IAuthFormProps {
-  onSubmit(formData: IAuthState): void;
+  onSubmit(formData: ISignUpInput): void;
 }
 
-export class AuthForm extends React.Component<IAuthFormProps, IAuthState> {
-  public state: IAuthState;
+export class SignUpForm extends React.Component<IAuthFormProps, ISignUpInput> {
+  public state: ISignUpInput;
 
   constructor(props: IAuthFormProps) {
     super(props);
@@ -33,7 +29,7 @@ export class AuthForm extends React.Component<IAuthFormProps, IAuthState> {
   };
 
   public changeHandler = (value: string, name: string) => {
-    this.setState((state: IAuthState) => ({...state, [name]: value}));
+    this.setState((state: ISignUpInput) => ({...state, [name]: value}));
   };
 
   public render(): JSX.Element {

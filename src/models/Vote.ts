@@ -1,5 +1,5 @@
 import { ILink } from './Link';
-import { IUser } from '../../../models/User';
+import { IUser } from './User';
 
 export interface IVote {
   id: string;

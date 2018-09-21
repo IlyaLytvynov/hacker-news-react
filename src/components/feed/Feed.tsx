@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ILink } from '../../containers/feed/models/Link';
+import { ILink } from '../../models/Link';
 
 export interface IFeedProps {
   links: Array<ILink>;

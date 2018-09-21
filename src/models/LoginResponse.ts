@@ -1,4 +1,4 @@
-import { IAuthData } from '../../../models/AuthData';
+import { IAuthData } from './AuthData';
 
 export interface ILoginResponse {
   data: { login: IAuthData };

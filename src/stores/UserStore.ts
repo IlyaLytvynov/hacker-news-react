@@ -1,9 +1,9 @@
 import { action, computed, observable } from 'mobx';
+
 import { IUser } from '../models/User';
 import { UserProvider } from '../providers/UserProvider';
 import { IAuthData } from '../models/AuthData';
 import { LocalStorage } from '../services/LocalStorage';
-import { history } from '../services/HistoryService';
 
 export class UserStore {
   @observable
@@ -22,20 +22,29 @@ export class UserStore {
     return this._userInfo;
   }
 
-  public login(data: any): void {
-    UserProvider.login(data).then((resp: IAuthData) => {
-      LocalStorage.set('token', resp.token);
-      history.push('/');
-    });
+  public login(data: any): Promise<void> {
+    return UserProvider.login(data)
+        .then((resp) => this.resolveData(resp));
+  }
+
+  public signUp(data: any): Promise<void> {
+    return UserProvider.signUp(data)
+      .then((resp) => this.resolveData(resp));
+  }
+
+  private resolveData(data: IAuthData): void {
+    LocalStorage.set('token', data.token);
+    this.setToken(data.token);
+    this.setUserInfo(data.user);
   }
 
   @action
-  public setToken(token: string) {
-    this._token = token;
-  }
-
-  @action
-  public setUserInfo(userInfo: IUser) {
+  private setUserInfo(userInfo: IUser) {
     this._userInfo = userInfo;
+  }
+
+  @action
+  private setToken(token: string) {
+    this._token = token;
   }
 }

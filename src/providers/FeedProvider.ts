@@ -1,6 +1,6 @@
-import { LINKS } from '../containers/feed/FeedGQL';
+import { LINKS } from '../gql-requests/FeedGQL';
 import { GQLResponseFormatter } from '../services/GQLResponseResolver';
-import { IFeedData, IFeedResponse } from '../containers/feed/models/FeedResponse';
+import { IFeedData, IFeedResponse } from '../models/FeedResponse';
 import { client } from '../services/GqlClient';
 
 export class FeedProvider {

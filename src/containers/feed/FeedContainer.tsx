@@ -1,6 +1,6 @@
-import { IFeedData } from './models/FeedResponse';
+import { IFeedData } from '../../models/FeedResponse';
 import * as React from 'react';
-import { ADD_LINK } from './FeedGQL';
+import { ADD_LINK } from '../../gql-requests/FeedGQL';
 import { client } from '../../services/GqlClient';
 import { GQLResponseFormatter } from '../../services/GQLResponseResolver';
 import { Feed } from '../../components/feed/Feed';

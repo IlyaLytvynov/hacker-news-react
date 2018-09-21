@@ -1,34 +1,29 @@
 import * as React from 'react';
 import { SyntheticEvent } from 'react';
-import { Input } from '../input/Input';
-import { Button, ButtonTypes } from '../button/Button';
 import * as classnames from 'classnames';
-
-import './LoginForm.scss';
 import { Link } from 'react-router-dom';
 
-export interface ILoginFormState {
-  email: string;
-  password: string;
-  name: string;
-}
+import { Input } from '../input/Input';
+import { Button, ButtonTypes } from '../button/Button';
+import { ILoginInput } from '../../models/LoginInput';
+
+import './LoginForm.scss';
 
 export interface ILoginFormProps {
   errors?: Array<any>;// todo add error types
   cleanErrors(): void;
 
-  onSubmit(formData: ILoginFormState): void;
+  onSubmit(formData: ILoginInput): void;
 }
 
-export class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
-  public state: ILoginFormState;
+export class LoginForm extends React.Component<ILoginFormProps, ILoginInput> {
+  public state: ILoginInput;
 
   constructor(props: ILoginFormProps) {
     super(props);
     this.state = {
       email: '',
       password: '',
-      name: ''
     }
   }
 
@@ -48,7 +43,7 @@ export class LoginForm extends React.Component<ILoginFormProps, ILoginFormState>
   };
 
   public changeHandler = (value: string, name: string) => {
-    this.setState((state: ILoginFormState) => ({...state, [name]: value}));
+    this.setState((state: ILoginInput) => ({...state, [name]: value}));
   };
 
   public render(): JSX.Element {

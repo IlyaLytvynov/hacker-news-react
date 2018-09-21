@@ -1,6 +1,7 @@
-import { IFeedData } from '../containers/feed/models/FeedResponse';
-import { ILink } from '../containers/feed/models/Link';
+import { IFeedData } from '../models/FeedResponse';
+import { ILink } from '../models/Link';
 import { action, computed, observable } from 'mobx';
+
 import { FeedProvider } from '../providers/FeedProvider';
 
 export class FeedStore implements IFeedData{
