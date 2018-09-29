@@ -2,10 +2,9 @@ import * as React from 'react';
 import { SyntheticEvent } from 'react';
 
 import './SignUpForm.scss';
-import { Button, ButtonTypes } from '../button/Button';
 import { Input } from '../input/Input';
 import { ISignUpInput } from '../../models/SignUpInput';
-
+import { Button, ButtonTypes } from '../button/Button'
 
 export interface IAuthFormProps {
   onSubmit(formData: ISignUpInput): void;
@@ -35,12 +34,12 @@ export class SignUpForm extends React.Component<IAuthFormProps, ISignUpInput> {
   public render(): JSX.Element {
     const {email, name, password} = this.state;
 
-    return (
+    return (  
       <form onSubmit={this.submit} className={'auth-form'} autoComplete="new-password">
         <Input value={name} name={'name'} placeholder={'Name'} onChange={this.changeHandler}/>
         <Input value={email} name={'email'} placeholder={'Email'} onChange={this.changeHandler}/>
         <Input value={password} name={'password'} placeholder={'Password'} onChange={this.changeHandler}/>
-        <Button type={ButtonTypes.Submit}>Sign Up</Button>
+        <Button type={ButtonTypes.Submit}>Register</Button>
       </form>
     );
   }

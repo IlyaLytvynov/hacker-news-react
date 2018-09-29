@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-export class GQLResponseFormatter {
+export class GQLResponseResolver {
   public static format<T, R>(response: Promise<T>, field: string): Promise<R> {
     return new Promise((resolve, reject) => {
       response

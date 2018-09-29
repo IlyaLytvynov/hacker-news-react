@@ -22,8 +22,8 @@ export class FeedStore implements IFeedData{
     }
 
     @action
-    public setLinks(): void {
-      FeedProvider.fetchData().then((data) => {
+    public setLinks(): Promise<void> {
+      return FeedProvider.fetchData().then((data) => {
         this._links = data.links;
       });
     }

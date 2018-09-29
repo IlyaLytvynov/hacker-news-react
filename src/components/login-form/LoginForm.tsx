@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { SyntheticEvent } from 'react';
 import * as classnames from 'classnames';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { SyntheticEvent } from 'react';
 
+import { Link } from 'react-router-dom';
+import { Button, ButtonTypes } from '../button/Button';
 import { Input } from '../input/Input';
 import { ILoginInput } from '../../models/LoginInput';
 
@@ -62,8 +62,7 @@ export class LoginForm extends React.Component<ILoginFormProps, ILoginInput> {
         <Input invalid={isErrors} value={email} name={'email'} placeholder={'Email'} onChange={this.changeHandler}/>
         <Input invalid={isErrors} value={password} name={'password'} placeholder={'Password'}
                onChange={this.changeHandler}/>
-        {/*<Button disabled={isErrors} type={ButtonTypes.Submit}>Log In</Button>*/}
-        <Button className={'btn'}>Log In</Button>
+        <Button disabled={isErrors} type={ButtonTypes.Submit}>Log In</Button>
         <h4>Don't have an account? <Link to={'/sign-up'}>Sign Up</Link></h4>
         {
           errorMessages

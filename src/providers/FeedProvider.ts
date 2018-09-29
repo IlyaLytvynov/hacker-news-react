@@ -1,5 +1,5 @@
 import { LINKS } from '../gql-requests/FeedGQL';
-import { GQLResponseFormatter } from '../services/GQLResponseResolver';
+import { GQLResponseResolver } from '../services/GQLResponseResolver';
 import { IFeedData, IFeedResponse } from '../models/FeedResponse';
 import { client } from '../services/GqlClient';
 
@@ -9,7 +9,7 @@ export class FeedProvider {
       query: LINKS
     };
 
-    return GQLResponseFormatter
+    return GQLResponseResolver
       .format<IFeedResponse, IFeedData>(client.query(query), 'feed');
   }
 

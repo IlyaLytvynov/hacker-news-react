@@ -1,4 +1,4 @@
-import { GQLResponseFormatter } from '../services/GQLResponseResolver';
+import { GQLResponseResolver } from '../services/GQLResponseResolver';
 import { client } from '../services/GqlClient';
 import { LOG_IN } from '../gql-requests/LoginGQL';
 import { IAuthData } from '../models/AuthData';
@@ -13,7 +13,7 @@ export class UserProvider {
       variables: data
     };
 
-    return GQLResponseFormatter
+    return GQLResponseResolver
       .format(client.mutate(options), 'login');
   }
 
@@ -23,6 +23,6 @@ export class UserProvider {
       variables: data,
     };
 
-    return GQLResponseFormatter.format(client.mutate(options), 'signup');
+    return GQLResponseResolver.format(client.mutate(options), 'signup');
   }
 }
