@@ -13,5 +13,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    min-height: 200px;
+    min-width: 200px;
+  }
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: none;
+    color: rgb(64, 64, 64);
+    cursor: pointer;
   }
 }

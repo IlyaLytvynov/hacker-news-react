@@ -9,9 +9,7 @@ export class Header extends React.Component {
     return <header className='global-header global-header_dark'>
       <Logo/>
       <nav>
-        {
-          this.props.children
-        }
+        { this.props.children }
       </nav>
     </header>
   }

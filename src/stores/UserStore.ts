@@ -14,8 +14,7 @@ export class UserStore {
 
   constructor(
     private provider: UserProvider = new UserProvider(),
-  ) {
-  }
+  ) {}
 
   @computed
   get token(): string {

@@ -6,13 +6,11 @@ import './App.scss';
 import { client } from './services/GqlClient';
 import { history } from './services/HistoryService';
 import { ApolloProvider } from 'react-apollo';
-import { Router, Link, Route, Switch } from 'react-router-dom';
-import { LoginContainer } from './containers/login/LoginContainer';
-import { SignUpContainer } from './containers/sign-up/SignUpContainer';
-import { FeedContainer } from './containers/feed/FeedContainer';
+import { Router, Link, Route } from 'react-router-dom';
 import { Provider as MobxProvider } from 'mobx-react';
 import { FeedStore } from './stores/FeedStore';
 import { UserStore } from './stores/UserStore';
+import { Routes } from './components/routes/Routes';
 
 const stores = {
   feedStore: new FeedStore(),
@@ -20,25 +18,24 @@ const stores = {
 };
 
 export class App extends React.Component<{}, {}> {
-  public render(): JSX.Element {
-    // @ts-ignore
-    return <Router history={history}>
-      <ApolloProvider client={client}>
-        <MobxProvider {...stores}>
+    public render() {
+      return <Router history={history}>
+        <ApolloProvider client={client}>
+          <MobxProvider {...stores}>
             <div className='app'>
               <Header>
                 <Link to={'/sign-up'}>Sign Up</Link>
                 <Link to={'/login'}>Login page</Link>
                 <Link to={'/'}>Home page</Link>
+                <Link to={{
+                  pathname: `/add-link`,
+                  state: {modal: true}
+                }}>Add Link</Link>
               </Header>
-              <Switch>
-                <Route path='/' exact={true} component={FeedContainer} />
-                <Route path='/sign-up' component={SignUpContainer} />
-                <Route path='/login' component={LoginContainer} />
-              </Switch>
+              <Route path='/' component={Routes} />
             </div>
-        </MobxProvider>
-      </ApolloProvider>
-    </Router>;
+          </MobxProvider>
+        </ApolloProvider>
+      </Router>;
   }
 }
