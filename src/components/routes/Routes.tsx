@@ -23,9 +23,10 @@ export class Routes extends React.Component<RouteComponentProps> {
     console.log(isModal);
     return <React.Fragment>
       <Switch location={ isModal ? this.previousLocation : location }>
-        <Route path='/feed' component={FeedContainer} />
+        <Route exact={true} path='/' component={FeedContainer} />
         <Route path='/sign-up' component={SignUpContainer} />
         <Route path='/login' component={LoginContainer} />
+
       </Switch>
       { isModal ? <RoutesModal /> : null }
     </React.Fragment>

@@ -1,9 +1,25 @@
 import * as React from 'react';
+import { INewLinkFormState, NewLinkForm } from '../../components/new-link-form/NewLinkForm';
+import { FeedStore } from '../../stores/FeedStore';
+import { inject, observer } from 'mobx-react';
+import { RouteComponentProps } from 'react-router';
 
-export class AddLink extends React.Component<{}, {}> {
+interface IFeedContainerProps extends RouteComponentProps {
+  feedStore?: FeedStore;
+}
+
+@inject('feedStore')
+@observer
+export class AddLink extends React.Component<IFeedContainerProps, {}> {
+  constructor(props: IFeedContainerProps) {
+    super(props);
+    this.addLink = this.addLink.bind(this);
+  }
+  public addLink(newLink: INewLinkFormState) {
+    this.props.feedStore!.addLink('asdasd').then(() => console.log('SUCCEDD'));
+  }
+
   public render(): JSX.Element {
-    console.log('Added modal');
-    console.log(this.props);
-    return <h3 style={{color: 'red'}}>Test</h3>
+    return <NewLinkForm onSubmit={this.addLink}/>
   }
 }
