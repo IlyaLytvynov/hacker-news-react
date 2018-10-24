@@ -24,13 +24,13 @@ export class App extends React.Component<{}, {}> {
           <MobxProvider {...stores}>
             <div className='app'>
               <Header>
-                <Link to={'/sign-up'}>Sign Up</Link>
-                <Link to={'/login'}>Login page</Link>
                 <Link to={'/'}>Home page</Link>
                 <Link to={{
                   pathname: `/add-link`,
                   state: {modal: true}
                 }}>Add Link</Link>
+                <Link to={'/sign-up'}>Sign Up</Link>
+                <Link to={'/login'}>Login page</Link>
               </Header>
               <Route path='/' component={Routes} />
 

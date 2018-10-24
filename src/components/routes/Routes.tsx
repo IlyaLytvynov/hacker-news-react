@@ -26,7 +26,6 @@ export class Routes extends React.Component<RouteComponentProps> {
         <Route exact={true} path='/' component={FeedContainer} />
         <Route path='/sign-up' component={SignUpContainer} />
         <Route path='/login' component={LoginContainer} />
-
       </Switch>
       { isModal ? <RoutesModal /> : null }
     </React.Fragment>

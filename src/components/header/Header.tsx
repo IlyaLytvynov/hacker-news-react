@@ -8,8 +8,8 @@ export class Header extends React.Component {
   public render(): JSX.Element {
     return <header className='global-header global-header_dark'>
       <Logo/>
-      <nav>
-        { this.props.children }
+      <nav className='global-nav'>
+        { React.Children.map(this.props.children, (child) => <div className={'global-nav__item'}>{child}</div>)}
       </nav>
     </header>
   }

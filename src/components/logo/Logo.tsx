@@ -10,6 +10,6 @@ export const Logo: React.SFC<ILogoProps> = (props: ILogoProps) => {
   const classNames = ['logo', ...(props.classNames || [])].join(' ');
 
   return <div className={classNames}>
-    LOGO
+    HACKER NEWS
   </div>
 };

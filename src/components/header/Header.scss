@@ -2,4 +2,21 @@
 
 .global-header {
   background-color: get-color(header, bg-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.global-nav {
+  display: flex;
+  background: red;
+  &__item {
+    display: flex;
+    > * {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      margin-right: 12px;
+    }
+  }
 }
