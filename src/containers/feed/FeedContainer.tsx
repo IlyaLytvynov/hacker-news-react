@@ -17,8 +17,6 @@ export class FeedContainer extends React.Component<IFeedContainerProps, IFeedDat
 
   public render(): JSX.Element {
     const { links, counts } = this.props.feedStore;
-    return <div className={'page'}>
-      <Feed links={links} counts={counts}/>
-    </div>;
+    return <Feed links={links} counts={counts}/>
   }
 }

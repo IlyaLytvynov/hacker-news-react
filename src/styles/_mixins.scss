@@ -4,12 +4,11 @@
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13);
   padding: 1rem;
   margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
+  width: 100vw;
+  max-width: 480px;
   background-color: get-color(auth-form, bg-color);
   border: 1px solid transparent;
   border-radius: $global-border-radius;
-  @include center;
   > * {
     margin: 10px 0;
   }
@@ -23,4 +22,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@mixin btnResetDefault {
+  border: none;
+  background: transparent;
 }

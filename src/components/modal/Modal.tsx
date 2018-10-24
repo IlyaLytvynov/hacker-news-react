@@ -2,12 +2,18 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import './Modal.scss';
-import { RouteComponentProps } from 'react-router';
 
 const modalRoot = document.getElementById('modal-root')!;
 
+export interface IModalProps {
+  onClose(): void;
+}
 
-export class Modal extends React.Component<RouteComponentProps> {
+export interface IModalChildProps {
+  close?<T = any, R = any>(result?: R): T
+}
+
+export class Modal extends React.Component<IModalProps, {}> {
   private el: HTMLElement;
 
   constructor(props) {
@@ -26,11 +32,10 @@ export class Modal extends React.Component<RouteComponentProps> {
 
   public goBack() {
     console.log(this.props);
-    this.props.history.goBack();
+    this.props.onClose()
   }
 
-  public render(): JSX.Element {
-
+  public render(): JSX.Element | undefined {
     return ReactDOM.createPortal(
       <div className={'modal__outlet'}>
         <div className="modal__content">

@@ -3,6 +3,7 @@ import { ILink } from '../models/Link';
 import { action, computed, observable } from 'mobx';
 
 import { FeedProvider } from '../providers/FeedProvider';
+import { INewLinkInput } from '../models/INewLinkInput';
 
 export class FeedStore implements IFeedData {
   @observable
@@ -24,16 +25,19 @@ export class FeedStore implements IFeedData {
   @action
   public setLinks(): Promise<void> {
     return FeedProvider.fetchData().then((data) => {
-      this._links = data.links;
+      this._links = observable(data.links);
     });
   }
 
   @action
-  public addLink(link: string): Promise<void> {
-    return FeedProvider.sendData({url: 'TEST 222', description: 'asdasdas'}).then((resp) => {
-      console.log('HELO WORLD', resp);
-    }).catch(() => {
+  public addLink(link: INewLinkInput): Promise<void> {
+    return FeedProvider.sendData(link).then(this.setLink).catch(() => {
       console.log('TEST ERROR');
     });
+  }
+
+  @action
+  private setLink = (resp) => {
+    this._links = this.links.concat([resp]);
   }
 }

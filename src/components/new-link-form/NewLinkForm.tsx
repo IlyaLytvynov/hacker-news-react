@@ -3,30 +3,34 @@ import { SyntheticEvent } from 'react';
 
 import { Input } from '../input/Input';
 import { Button } from '../button/Button';
+import { FeedStore } from '../../stores/FeedStore';
+import { inject, observer } from 'mobx-react';
+import { INewLinkInput } from '../../models/INewLinkInput';
+import { IModalChildProps } from '../modal/Modal';
 
-export interface INewLinkFormState {
-  url: string;
-  description: string;
+interface IProps extends IModalChildProps {
+  feedStore?: FeedStore;
 }
 
-interface INewLinkFormProps {
-  onSubmit(data: INewLinkFormState): void;
-}
-
-export class NewLinkForm extends React.Component<INewLinkFormProps, INewLinkFormState> {
-  public state: INewLinkFormState = {
+@inject('feedStore')
+@observer
+export class NewLinkForm extends React.Component<IProps, INewLinkInput> {
+  public state: INewLinkInput = {
     url: '',
     description: ''
   };
 
   public changeHandler = (value: string, name: string) => {
-    this.setState((state: INewLinkFormState) => ({...state, [name]: value}));
+    this.setState((state: INewLinkInput) => ({...state, [name]: value}));
   };
 
   public submit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    this.props.onSubmit(this.state);
+    this.props.feedStore!.addLink(this.state).then(() => {
+      this.props.close!();
+    });
+    // this.props.onSubmit(this.state);
   };
 
   public render(): JSX.Element {

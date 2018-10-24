@@ -8,22 +8,30 @@ import { Input } from '../input/Input';
 import { ILoginInput } from '../../models/LoginInput';
 
 import './LoginForm.scss';
+import { inject } from 'mobx-react';
+import { UserStore } from '../../stores/UserStore';
+import { IModalChildProps } from '../modal/Modal';
 
-export interface ILoginFormProps {
-  errors?: Array<any>;// todo add error types
-  cleanErrors(): void;
-
-  onSubmit(formData: ILoginInput): void;
+export interface ILoginFormProps extends IModalChildProps {
+  userStore?: UserStore;
+  new?: string;
+  onErrorLogin?(): void;
+  onSuccessLogin?(): void;
+}
+interface IState extends ILoginInput {
+  errors: Array<Error>;
 }
 
-export class LoginForm extends React.Component<ILoginFormProps, ILoginInput> {
-  public state: ILoginInput;
+@inject('userStore')
+export class LoginForm extends React.Component<ILoginFormProps, IState> {
+  public state: IState;
 
   constructor(props: ILoginFormProps) {
     super(props);
     this.state = {
       email: '',
       password: '',
+      errors: [],
     }
   }
 
@@ -35,11 +43,10 @@ export class LoginForm extends React.Component<ILoginFormProps, ILoginInput> {
     e.preventDefault();
     e.stopPropagation();
 
-    if (this.props.errors && this.props.errors.length > 0) {
-      return;
-    }
-
-    this.props.onSubmit(this.state);
+    const { email, password } = this.state;
+    this.props.userStore!
+      .login({email, password})
+      .catch((error) => this.setState(state => ({...state, errors: [error]})));
   };
 
   public changeHandler = (value: string, name: string) => {
@@ -47,8 +54,7 @@ export class LoginForm extends React.Component<ILoginFormProps, ILoginInput> {
   };
 
   public render(): JSX.Element {
-    const {email, password} = this.state;
-    const {errors} = this.props;
+    const {email, password, errors} = this.state;
 
     const isErrors = errors && errors.length > 0;
     const classNames = classnames('login-form', {

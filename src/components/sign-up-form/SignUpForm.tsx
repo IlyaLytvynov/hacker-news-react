@@ -1,19 +1,24 @@
 import * as React from 'react';
 import { SyntheticEvent } from 'react';
+import { inject, observer } from 'mobx-react';
 
 import './SignUpForm.scss';
 import { Input } from '../input/Input';
 import { ISignUpInput } from '../../models/SignUpInput';
 import { Button, ButtonTypes } from '../button/Button'
+import { IModalChildProps } from '../modal/Modal';
+import { UserStore } from '../../stores/UserStore';
 
-export interface IAuthFormProps {
-  onSubmit(formData: ISignUpInput): void;
+interface IProps extends IModalChildProps {
+  userStore?: UserStore;
 }
 
-export class SignUpForm extends React.Component<IAuthFormProps, ISignUpInput> {
+@inject('userStore')
+@observer
+export class SignUpForm extends React.Component<IProps, ISignUpInput> {
   public state: ISignUpInput;
 
-  constructor(props: IAuthFormProps) {
+  constructor(props: IModalChildProps) {
     super(props);
     this.state = {
       email: '',
@@ -24,7 +29,9 @@ export class SignUpForm extends React.Component<IAuthFormProps, ISignUpInput> {
 
   public submit = (e: SyntheticEvent) => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.userStore!
+      .signUp(this.state)
+      .catch((error)=> console.log(error));
   };
 
   public changeHandler = (value: string, name: string) => {

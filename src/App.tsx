@@ -3,40 +3,44 @@ import * as React from 'react';
 import { Header } from './components/header/Header';
 
 import './App.scss';
-import { client } from './services/GqlClient';
-import { history } from './services/HistoryService';
-import { ApolloProvider } from 'react-apollo';
-import { Router, Link, Route } from 'react-router-dom';
-import { Provider as MobxProvider } from 'mobx-react';
-import { FeedStore } from './stores/FeedStore';
+import { Link, Route, Switch } from 'react-router-dom';
+import { FeedContainer } from './containers/feed/FeedContainer';
+import { OpenModal } from './components/modal/OpenModal';
+import { LoginForm } from './components/login-form/LoginForm';
 import { UserStore } from './stores/UserStore';
-import { Routes } from './components/routes/Routes';
+import { inject, observer } from 'mobx-react';
+import { SignUpForm } from './components/sign-up-form/SignUpForm';
+import { NewLinkForm } from './components/new-link-form/NewLinkForm';
 
-const stores = {
-  feedStore: new FeedStore(),
-  userStore: new UserStore(),
-};
+interface IProps {
+  userStore?: UserStore,
+}
 
-export class App extends React.Component<{}, {}> {
-    public render() {
-      return <Router history={history}>
-        <ApolloProvider client={client}>
-          <MobxProvider {...stores}>
-            <div className='app'>
-              <Header>
-                <Link to={'/'}>Home page</Link>
-                <Link to={{
-                  pathname: `/add-link`,
-                  state: {modal: true}
-                }}>Add Link</Link>
-                <Link to={'/sign-up'}>Sign Up</Link>
-                <Link to={'/login'}>Login page</Link>
-              </Header>
-              <Route path='/' component={Routes} />
+@inject('userStore')
+@observer
+export class App extends React.Component<IProps, {}> {
+  public render() {
+    return <div className='app'>
+      <Header>
+        <Link to={'/'}>Home page</Link>
+        { this.renderControls() }
+      </Header>
+      <main className={'app-content'}>
+        <Switch>
+          <Route exact={true} path='/' component={FeedContainer}/>
+        </Switch>
+      </main>
 
-            </div>
-          </MobxProvider>
-        </ApolloProvider>
-      </Router>;
+    </div>
+  }
+
+  private renderControls() {
+    if (this.props.userStore!.token) {
+      return <OpenModal title={'AddLink'}><NewLinkForm/></OpenModal>
+    } else {
+       return <> <OpenModal title={'Sign Up'}><SignUpForm/></OpenModal>
+          <OpenModal title={'Log In'}><LoginForm/></OpenModal>
+       </>
+    }
   }
 }

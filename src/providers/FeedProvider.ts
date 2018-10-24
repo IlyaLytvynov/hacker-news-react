@@ -16,6 +16,6 @@ export class FeedProvider {
       variables: data,
     };
 
-    return GQLResponseResolver.format<any, any>(client.mutate(options), 'feed');
+    return GQLResponseResolver.format<any, any>(client.mutate(options), 'post');
   }
 }

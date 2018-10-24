@@ -36,6 +36,7 @@ a {
 
 .app {
   background: get-color(content, bg-color);
+  min-height: 100vh;
 }
 
 .page {
@@ -44,6 +45,9 @@ a {
   min-height: calc(100vh - #{$header-height});
   position: relative;
 }
+.app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px;
 
-#modal-root {
 }
