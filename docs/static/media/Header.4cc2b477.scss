@@ -1,0 +1,26 @@
+@import '../../styles/index';
+
+.global-header {
+  background-color: get-color(header, bg-color);
+  display: flex;
+  justify-content: space-between;
+  color: #181818;
+  box-shadow: 0 0 1px 0 #0000008f;
+}
+
+.global-nav {
+  display: flex;
+  &__item {
+    display: flex;
+    > * {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      color: #181818;
+      margin-right: 12px;
+      @include btnResetDefault;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  }
+}

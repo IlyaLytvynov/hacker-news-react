@@ -1,0 +1,27 @@
+.modal {
+  &__outlet {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0, .3);
+  }
+  &__content {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    min-width: 200px;
+  }
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: none;
+    color: rgb(64, 64, 64);
+    cursor: pointer;
+    z-index: 2;
+  }
+}
