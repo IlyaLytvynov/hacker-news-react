@@ -15,6 +15,9 @@
   &_invalid {
     border-color: get-color(global, danger);
   }
+  &__title {
+    text-align: center;
+  }
 }
 
 @mixin center {

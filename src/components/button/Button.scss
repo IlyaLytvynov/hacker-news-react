@@ -3,7 +3,7 @@
 .button {
   background: transparent;
   border: 1px solid #efefef;
-  border-radius: 3px;
+  border-radius: $global-border-radius;
   padding: 0.8rem;
   text-align: center;
   position: relative;

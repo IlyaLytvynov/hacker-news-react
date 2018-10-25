@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Header } from './components/header/Header';
 
 import './App.scss';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { FeedContainer } from './containers/feed/FeedContainer';
 import { OpenModal } from './components/modal/OpenModal';
 import { LoginForm } from './components/login-form/LoginForm';
@@ -22,12 +22,12 @@ export class App extends React.Component<IProps, {}> {
   public render() {
     return <div className='app'>
       <Header>
-        <Link to={'/'}>Home page</Link>
         { this.renderControls() }
       </Header>
       <main className={'app-content'}>
         <Switch>
           <Route exact={true} path='/' component={FeedContainer}/>
+          <Redirect to={'/'} />
         </Switch>
       </main>
 

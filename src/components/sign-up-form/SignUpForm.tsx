@@ -43,6 +43,9 @@ export class SignUpForm extends React.Component<IProps, ISignUpInput> {
 
     return (  
       <form onSubmit={this.submit} className={'auth-form'} autoComplete="new-password">
+        <h3 className="auth-form__title">
+          Sign Up
+        </h3>
         <Input value={name} name={'name'} placeholder={'Name'} onChange={this.changeHandler}/>
         <Input value={email} name={'email'} placeholder={'Email'} onChange={this.changeHandler}/>
         <Input value={password} name={'password'} placeholder={'Password'} onChange={this.changeHandler}/>

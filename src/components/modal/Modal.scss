@@ -8,16 +8,15 @@
   }
   &__content {
     position: absolute;
-    top: 30%;
+    top: 20vh;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
+    transform: translate(-50%, 0);
     min-width: 200px;
   }
   &__close {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 8px;
+    top: 5px;
     border: none;
     background: none;
     color: rgb(64, 64, 64);

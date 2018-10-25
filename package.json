@@ -2,6 +2,7 @@
   "name": "github-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ilyalytvynov.github.io/hacker-news-react/",
   "dependencies": {
     "@material-ui/core": "^3.1.0",
     "@types/lodash": "^4.14.116",
@@ -64,7 +65,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.6",
@@ -77,7 +80,8 @@
     "@types/react-router-dom": "^4.3.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "node-sass": "^4.9.3",
+    "gh-pages": "^2.0.1",
+    "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
     "typescript": "^3.0.3"
   },

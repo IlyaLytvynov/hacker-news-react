@@ -2,10 +2,14 @@
 
 .global-header {
   background-color: get-color(header, bg-color);
-  display: flex;
-  justify-content: space-between;
   color: #181818;
   box-shadow: 0 0 1px 0 #0000008f;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 .global-nav {

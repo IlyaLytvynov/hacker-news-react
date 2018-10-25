@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as classnames from 'classnames';
 import { SyntheticEvent } from 'react';
 
-import { Link } from 'react-router-dom';
 import { Button, ButtonTypes } from '../button/Button';
 import { Input } from '../input/Input';
 import { ILoginInput } from '../../models/LoginInput';
@@ -65,11 +64,13 @@ export class LoginForm extends React.Component<ILoginFormProps, IState> {
 
     return (
       <form onSubmit={this.submit} className={classNames} autoComplete="new-password">
+        <h3 className="auth-form__title">
+          Log In
+        </h3>
         <Input invalid={isErrors} value={email} name={'email'} placeholder={'Email'} onChange={this.changeHandler}/>
         <Input invalid={isErrors} value={password} name={'password'} placeholder={'Password'}
                onChange={this.changeHandler}/>
         <Button disabled={isErrors} type={ButtonTypes.Submit}>Log In</Button>
-        <h4>Don't have an account? <Link to={'/sign-up'}>Sign Up</Link></h4>
         {
           errorMessages
         }

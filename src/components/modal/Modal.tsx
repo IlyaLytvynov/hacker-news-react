@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import './Modal.scss';
+import { SyntheticEvent } from 'react';
 
 const modalRoot = document.getElementById('modal-root')!;
 
@@ -19,7 +20,6 @@ export class Modal extends React.Component<IModalProps, {}> {
   constructor(props) {
     super(props);
     this.el = document.createElement('div');
-    this.goBack = this.goBack.bind(this);
   }
 
   public componentDidMount(): void {
@@ -30,17 +30,26 @@ export class Modal extends React.Component<IModalProps, {}> {
     modalRoot.removeChild(this.el);
   }
 
-  public goBack() {
-    console.log(this.props);
+  public goBack = (e: SyntheticEvent) => {
+    e.stopPropagation();
     this.props.onClose()
-  }
+  };
+
+  public onOutletClick = (e: SyntheticEvent) => {
+    e.stopPropagation();
+    this.goBack(e);
+  };
+
+  public preventClose = (e: SyntheticEvent) => {
+    e.stopPropagation();
+  };
 
   public render(): JSX.Element | undefined {
     return ReactDOM.createPortal(
-      <div className={'modal__outlet'}>
-        <div className="modal__content">
+      <div className={'modal__outlet'} onClick={this.onOutletClick}>
+        <div className="modal__content" onClick={this.preventClose}>
           <button className={'modal__close'} onClick={this.goBack}>Close</button>
-          { this.props.children }
+          {this.props.children}
         </div>
       </div>,
       this.el,
