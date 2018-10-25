@@ -1,4 +1,4 @@
-.logo {
+@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/css?family=Roboto);.logo {
   font-size: 2rem; }
 .global-header {
   background-color: orange;
@@ -81,8 +81,8 @@ a {
 
 .modal__close {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 8px;
+  top: 5px;
   border: none;
   background: none;
   color: #404040;
@@ -125,12 +125,12 @@ a {
 .input__native {
   width: 100%;
   padding: 10px;
-  border: none;
-  border-bottom: 1px solid rgba(7, 10, 20, 0.5);
+  border: 1px solid lightgray;
+  border-radius: 1px;
   font-size: 1rem; }
   .input__native:focus {
     border-color: #1991eb;
-    color: #1991eb; }
+    color: #101217; }
     .input__native:focus::placeholder {
       color: #1991eb; }
   .input__native::placeholder {
@@ -157,6 +157,8 @@ a {
     margin: 10px 0; }
   .login-form_invalid {
     border-color: #ff482c; }
+  .login-form__title {
+    text-align: center; }
 .auth-form {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.13);
   padding: 1rem;
@@ -170,9 +172,11 @@ a {
     margin: 10px 0; }
   .auth-form_invalid {
     border-color: #ff482c; }
+  .auth-form__title {
+    text-align: center; }
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif; }
 
-/*# sourceMappingURL=main.03cd6474.css.map*/
+/*# sourceMappingURL=main.3627a650.css.map*/
