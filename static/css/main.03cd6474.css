@@ -2,10 +2,13 @@
   font-size: 2rem; }
 .global-header {
   background-color: orange;
-  display: flex;
-  justify-content: space-between;
   color: #181818;
   box-shadow: 0 0 1px 0 #0000008f; }
+  .global-header__content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto; }
 
 .global-nav {
   display: flex; }
@@ -172,4 +175,4 @@ body {
   padding: 0;
   font-family: sans-serif; }
 
-/*# sourceMappingURL=main.fcae1e27.css.map*/
+/*# sourceMappingURL=main.03cd6474.css.map*/
