@@ -28,6 +28,8 @@
 }
 
 @mixin btnResetDefault {
+  padding: 0;
+  font-size: 1rem;
   border: none;
   background: transparent;
 }

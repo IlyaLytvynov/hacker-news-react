@@ -1,5 +1,5 @@
 import { GQLResponseResolver } from '../services/GQLResponseResolver';
-import { client } from '../services/GqlClient';
+import { GQLClient } from '../services/GqlClient';
 import { LOG_IN } from '../gql-requests/LoginGQL';
 import { IAuthData } from '../models/AuthData';
 import { SIGN_UP } from '../gql-requests/SignUpGQL';
@@ -14,7 +14,7 @@ export class UserProvider {
     };
 
     return GQLResponseResolver
-      .format(client.mutate(options), 'login');
+      .format(GQLClient.client.mutate(options), 'login');
   }
 
   public signUp(data: ISignUpInput): Promise<IAuthData> {
@@ -23,6 +23,6 @@ export class UserProvider {
       variables: data,
     };
 
-    return GQLResponseResolver.format(client.mutate(options), 'signup');
+    return GQLResponseResolver.format(GQLClient.client.mutate(options), 'signup');
   }
 }

@@ -35,11 +35,16 @@ export class App extends React.Component<IProps, {}> {
   }
 
   private renderControls() {
-    if (this.props.userStore!.token) {
-      return <OpenModal title={'AddLink'}><NewLinkForm/></OpenModal>
+    const userStore = this.props.userStore!;
+    if (userStore.token) {
+      return <>
+        <OpenModal title={'AddLink'}><NewLinkForm/></OpenModal>
+        <button onClick={() => userStore.logout()}>Log out</button>
+      </>
     } else {
-       return <> <OpenModal title={'Sign Up'}><SignUpForm/></OpenModal>
-          <OpenModal title={'Log In'}><LoginForm/></OpenModal>
+       return <> 
+        <OpenModal title={'Sign Up'}><SignUpForm/></OpenModal>
+        <OpenModal title={'Log In'}><LoginForm/></OpenModal>
        </>
     }
   }

@@ -6,7 +6,7 @@ import { App } from './App';
 
 import './index.scss';
 import { ApolloProvider } from 'react-apollo';
-import { client } from './services/GqlClient';
+import { GQLClient } from './services/GqlClient';
 import { Provider as MobxProvider } from 'mobx-react';
 import { HashRouter as Router } from 'react-router-dom';
 import { FeedStore } from './stores/FeedStore';
@@ -17,9 +17,11 @@ const stores = {
   userStore: new UserStore(),
 };
 
+GQLClient.createClient(stores.userStore);
+
 ReactDOM.render(
   <Router>
-    <ApolloProvider client={client}>
+    <ApolloProvider client={GQLClient.client}>
       <MobxProvider {...stores}>
         <App />
       </MobxProvider>
