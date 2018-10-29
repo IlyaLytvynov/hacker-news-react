@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const LINKS: any = gql`
-    {
-      feed {
+    query Feed($filter: String, $orderBy: LinkOrderByInput, $first: Int) {
+      feed(filter: $filter, orderBy: $orderBy, first: $first) {
         links {
           url
           description
